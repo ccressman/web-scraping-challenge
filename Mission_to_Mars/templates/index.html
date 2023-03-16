@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1> Interested in Mars?</h1>
+      <p>Click on below button to generate some Mars facts!</p>
+      <p><a class="btn btn-light btn-lg" href="/scrape" role="button">GET MARS DATA</a></p>
+    </div>
+  </div>
+
+  <!-- Scrape One: News -->
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-9">
+      <h2>Latest Mars News:</h2>
+      <br>
+      <h3>{{ mars['News Article Title'] }}</h3>
+      <p>{{ mars['News Article Summary'] }}</p>
+    </div>
+  </div>
+  <br>
+
+  <!-- Scrape Two: Featured Image -->
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Featured Image of Mars:</h2>
+      <img src= "{{ mars['Featured Image'] }}" alt="Featured Image of Mars" width: 75%>
+    </div>
+    
+    <!-- Scrape Three: Mars Table -->
+    <div class="col-md-4">
+      <h2>Mars Facts</h2>
+      <div class="table table-responsive table-hover table-dark" id="tableData">
+        {{mars["Mars Data Table"]|safe}}
+      </div>
+    </div>
+  </div>
+  
+  <br>
+  <!-- Srape Four: Images of Mars Hemispheres -->
+  <div class="row">
+    <div class="col">
+    <h2>Images of Mars's Hemispheres</h2>
+    </div>
+  </div>
+  {% for h in mars['Hemisphere Image URLs']%}
+  <div class="card" style="width: 9rem;">
+    <img class="card-img-top" src="{{ h.image_url }}" alt="Images of Mars Hemispheres"> 
+    <p>{{ h.title }}</p>
+  </div>
+  {% endfor %}
+</div>
+
+</body>
+
+</html>
+
